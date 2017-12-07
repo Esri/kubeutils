@@ -12,6 +12,11 @@ async function apply (resource, options = {}) {
   return exec(args, resource)
 }
 
+async function rollout (deploymentName, command, options = {}) {
+  const args = ['rollout', command, 'deployment', deploymentName, ...optionalArgs(options)]
+  return exec(args, null, { logOutput: true })
+}
+
 async function del (type, name, options = {}) {
   const args = ['delete', type, name, ...optionalArgs(options)]
   return exec(args)
@@ -42,7 +47,11 @@ async function waitFor (type, name, options = {}, elapsed = 0) {
   } catch (e) {
     let waitingFor = `type=${type}`
     if (name) waitingFor = `${waitingFor} name=${name}`
-    console.log(chalk.yellow(`status=waiting ${waitingFor} elapsed=${elapsed} limit=${limit} timeout=${timeout}`))
+    console.log(
+      chalk.yellow(
+        `status=waiting ${waitingFor} elapsed=${elapsed} limit=${limit} timeout=${timeout}`
+      )
+    )
     if (elapsed > limit) {
       throw new Error('Timeout expired')
     } else {
@@ -59,25 +68,30 @@ function optionalArgs (options) {
   if (options.force) args = [...args, '--force=true']
   if (options.dryRun) args = [...args, '--dry-run=true']
   if (options.kubeconfig) args = [...args, '--kubeconfig', options.kubeconfig]
-  if (options.server) args = [...args, '--server', server]
-  if (options.client-certificate) args = [...args, '--client-certificate', client-certificate]
-  if (options.token) args = [...args, '--token', token ]
+  if (options.server) args = [...args, '--server', options.server]
+  if (options['client-certificate']) {
+    args = [...args, '--client-certificate', options['client-certificate']]
+  }
+  if (options.token) args = [...args, '--token', options.token]
   // typeof check here because validate defaults to true
   if (typeof options.validate !== 'undefined') args = [...args, `--validate=${options.validate}`]
   return args
 }
 
-function exec (args = [], resource) {
+function exec (args = [], resource, options = {}) {
   if (process.env.DEBUG) console.log('kubectl args = ' + args)
+  if (process.env.DEBUG) console.log('kubectl options = ' + JSON.stringify(options, null, 2))
   return new Promise((resolve, reject) => {
     const kubectl = spawn('/usr/local/bin/kubectl', args)
     const stdout = []
     const stderr = []
     kubectl.stdout.on('data', d => {
-      stdout.push(d)
+      if (options.logOutput) console.log(d.toString())
+      else stdout.push(d)
     })
     kubectl.stderr.on('data', d => {
-      stderr.push(d)
+      if (options.logOutput) console.log(d.toString())
+      else stderr.push(d)
     })
 
     if (resource) {
@@ -130,5 +144,6 @@ module.exports = {
   waitFor,
   del,
   createNamespace,
-  context
+  context,
+  rollout
 }
