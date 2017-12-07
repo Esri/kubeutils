@@ -59,6 +59,9 @@ function optionalArgs (options) {
   if (options.force) args = [...args, '--force=true']
   if (options.dryRun) args = [...args, '--dry-run=true']
   if (options.kubeconfig) args = [...args, '--kubeconfig', options.kubeconfig]
+  if (options.server) args = [...args, '--server', server]
+  if (options.client-certificate) args = [...args, '--client-certificate', client-certificate]
+  if (options.token) args = [...args, '--token', token ]
   // typeof check here because validate defaults to true
   if (typeof options.validate !== 'undefined') args = [...args, `--validate=${options.validate}`]
   return args
