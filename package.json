@@ -1,4 +1,7 @@
 {
+  "bin": {
+    "kubeutils": "bin/cli.js"
+  },
   "dependencies": {
     "chalk": "^2.3.0",
     "delay": "^2.0.0",
@@ -28,11 +31,7 @@
     "type": "git",
     "url": "git+https://github.com/dmfenton/kubeutils.git"
   },
-  "keywords": [
-    "kubernetes",
-    "kops",
-    "cli"
-  ],
+  "keywords": ["kubernetes", "kops", "cli"],
   "author": "Daniel Fenton <dfenton@esri.com>",
   "license": "Apache-2.0",
   "bugs": {

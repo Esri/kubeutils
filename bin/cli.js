@@ -11,6 +11,12 @@ module.exports = yargs
     deployOpts,
     handle(commands.deploy)
   )
+  .command(
+    'rollback',
+    'rolls back the deployments on a target cluster',
+    rollbackOpts,
+    handle(commands.rollback)
+  )
   .help('help')
   .epilog('Made with ♥️  by Esri DC R&D')
   .wrap(100).argv
@@ -23,7 +29,15 @@ function deployOpts (yargs) {
     .describe('env', 'which hub environment to deploy to')
     .describe('tag', 'which tag to deploy')
     .choices('env', ['dev', 'qa', 'prod'])
-    .demand(['server', 'token', 'certificate', 'env'])
+}
+
+function rollbackOpts (yargs) {
+  return yargs
+    .describe('server', 'k8s api of the cluster')
+    .describe('token', 'token for accessing the cluster')
+    .describe('client-certificate', 'TLS certificate for the cluster')
+    .describe('env', 'which hub environment/namespace to rollback')
+    .choices('env', ['dev', 'qa', 'prod'])
 }
 
 function handle (command) {

@@ -1,23 +1,40 @@
-const { loadEnvironment } = require('./lib')
-const { loadResources, kubectl } = require('kubeutils')
+const { loadEnvironment, logApplies } = require('./lib')
+const { loadResources, kubectl } = require('../')
 
 async function execute (options) {
   const environment = loadEnvironment(options.env)
-  const resources = await loadResources('k8s', environment)
+  const resources = await loadResources('k8s', { ...environment, ...options })
+
+  const deployments = resources
+    .filter(r => {
+      return r.kind === 'Deployment'
+    })
+    .map(d => {
+      return d.metadata.name
+    })
 
   console.log('dry run of deployment')
-  await applyResources(resources, environment, options.tag, true)
+  const dryApplies = await applyResources(resources, { ...options, dryRun: true })
+  logApplies(dryApplies)
 
   console.log('the real deal')
-  await applyResources(resources, environment, options.tag, false)
+  const applies = await applyResources(resources, options)
+  logApplies(applies)
+
+  console.log('checking rollout status')
+  await Promise.all(
+    deployments.map(d => {
+      return kubectl.rollout(d, 'status', { ...options, namespace: options.env })
+    })
+  )
 }
 
-function applyResources (resources, environment, tag, dryRun) {
-  const options = { ...environment, tag }
-  if (dryRun) options.dryRun = true
-  return Promise.all(resources.map(r => {
-    kubectl.apply(r, options)
-  }))
+function applyResources (resources, options) {
+  return Promise.all(
+    resources.map(r => {
+      return kubectl.apply(r, options)
+    })
+  )
 }
 
 module.exports = execute

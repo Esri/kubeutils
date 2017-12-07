@@ -8,6 +8,7 @@ const read = util.promisify(fs.readFile)
 const handlebars = require('handlebars')
 
 async function loadResources (root, values = {}, options = {}) {
+  console.log(values)
   const manifest = buildManifest(root, options)
 
   const strings = await Promise.all(
@@ -33,7 +34,7 @@ async function loadResources (root, values = {}, options = {}) {
 
 function buildManifest (root, options) {
   const globs = options.globs || ['**/*.yaml', '**/*.hbs']
-  return walk(path.join(__dirname, root), { directories: false, globs }).map(file => {
+  return walk(path.join(process.cwd(), root), { directories: false, globs }).map(file => {
     return path.join(root, file)
   })
 }
