@@ -23,7 +23,7 @@ module.exports = yargs
 
 function deployOpts (yargs) {
   return yargs
-    .describe('server', 'k8s api to deploy to')
+    .describe('cluster', 'cluster to deploy to')
     .describe('token', 'token for accessing the cluster')
     .describe('certificate-authority-data', 'cert auth data for the cluster')
     .describe('env', 'which hub environment to deploy to')
