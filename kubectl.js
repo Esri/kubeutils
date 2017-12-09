@@ -12,6 +12,28 @@ async function apply (resource, options = {}) {
   return exec(args, resource)
 }
 
+async function config (command, options = {}) {
+  let args
+  if (command === 'set-context') {
+    args = [
+      'config',
+      command,
+      options.cluster,
+      ...optionalArgs({ cluster: options.cluster, user: options.cluster })
+    ] // we send --cluster and --user
+  } else if (command === 'set-cluster') {
+    args = [
+      'config',
+      command,
+      options.cluster,
+      ...optionalArgs({ server: options.server }) // we send --server
+    ]
+  } else if (command === 'use-context') {
+    args = ['config', command, options.cluster] // no args required for this one
+  }
+  return exec(args, null, { logOutput: true })
+}
+
 async function rollout (deploymentName, command, options = {}) {
   const args = ['rollout', command, 'deployment', deploymentName, ...optionalArgs(options)]
   return exec(args, null, { logOutput: true })
@@ -69,10 +91,9 @@ function optionalArgs (options) {
   if (options.dryRun) args = [...args, '--dry-run=true']
   if (options.kubeconfig) args = [...args, '--kubeconfig', options.kubeconfig]
   if (options.server) args = [...args, '--server', options.server]
-  if (options['client-certificate']) {
-    args = [...args, '--client-certificate', options['client-certificate']]
-  }
-  if (options.token) args = [...args, '--token', options.token]
+  if (options) if (options.token) args = [...args, '--token', options.token]
+  if (options.cluster) args = [...args, '--cluster', options.cluster]
+  if (options.user) args = [...args, '--user', options.user]
   // typeof check here because validate defaults to true
   if (typeof options.validate !== 'undefined') args = [...args, `--validate=${options.validate}`]
   return args
@@ -145,5 +166,6 @@ module.exports = {
   del,
   createNamespace,
   context,
-  rollout
+  rollout,
+  config
 }
