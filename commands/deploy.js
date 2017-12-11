@@ -3,13 +3,13 @@ const { loadResources, kubectl } = require('../')
 
 async function execute (options) {
   // options has token, certificate-authority-data, cluster, env, tag
-  // options.server = `https://api.${options.cluster}`
+  options.server = `https://api.${options.cluster}` // we need this to add to kubecfg if there is a new cluster
   const environment = loadEnvironment(options.env)
   const resources = await loadResources('k8s', { ...environment, ...options })
 
-  // if (options['certificate-authority-data']) {
-  //   await kubecfg.write(options)
-  // }
+  if (options['certificate-authority-data']) {
+    await kubecfg.write(options)
+  }
   const deployments = resources
     .filter(r => {
       return r.kind === 'Deployment'
@@ -18,8 +18,9 @@ async function execute (options) {
       return d.metadata.name
     })
 
-  // delete options.cluster
-  // delete options['certificate-authority-data']
+  delete options.cluster
+  delete options['certificate-authority-data']
+  delete options.server
   console.log('dry run of deployment')
   const dryApplies = await applyResources(resources, { ...options, dryRun: true })
   logApplies(dryApplies)
