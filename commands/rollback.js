@@ -16,7 +16,7 @@ async function execute (options) {
   console.log('rolling back deployments')
   await Promise.all(
     deployments.map(d => {
-      return kubectl.rollout(d, 'undo', { ...options, namespace: options.env })
+      return kubectl.rollout(d, 'undo', { namespace: options.env })
     })
   )
 }

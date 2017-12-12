@@ -19,7 +19,7 @@ async function config (command, options = {}) {
       'config',
       command,
       options.cluster,
-      ...optionalArgs({ cluster: options.cluster, user: options.cluster })
+      ...optionalArgs({ cluster: options.cluster, user: options.user })
     ] // we send --cluster and --user
   } else if (command === 'set-cluster') {
     args = [

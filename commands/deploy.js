@@ -2,7 +2,7 @@ const { loadEnvironment, logApplies, kubecfg } = require('./lib')
 const { loadResources, kubectl } = require('../')
 
 async function execute (options) {
-  // options has token, certificate-authority-data, cluster, env, tag
+  // options has certificate-authority-data, cluster, env, tag, user (oidc user)
   options.server = `https://api.${options.cluster}` // we need this to add to kubecfg if there is a new cluster
   const environment = loadEnvironment(options.env)
   const resources = await loadResources('k8s', { ...environment, ...options })
@@ -18,21 +18,28 @@ async function execute (options) {
       return d.metadata.name
     })
 
-  delete options.cluster
-  delete options['certificate-authority-data']
-  delete options.server
   console.log('dry run of deployment')
-  const dryApplies = await applyResources(resources, { ...options, dryRun: true })
+  console.log({
+    env: options.env,
+    tag: options.tag,
+    dryRun: true
+  })
+  const dryApplies = await applyResources(resources, {
+    env: options.env,
+    tag: options.tag,
+    dryRun: true
+  })
   logApplies(dryApplies)
 
   console.log('the real deal')
-  const applies = await applyResources(resources, options)
+  console.log({ env: options.env, tag: options.tag })
+  const applies = await applyResources(resources, { env: options.env, tag: options.tag })
   logApplies(applies)
 
   console.log('checking rollout status')
   await Promise.all(
     deployments.map(d => {
-      return kubectl.rollout(d, 'status', { ...options, namespace: options.env })
+      return kubectl.rollout(d, 'status', { namespace: options.env })
     })
   )
 }
