@@ -3,7 +3,9 @@ const { loadResources, kubectl } = require('../')
 
 async function execute (options) {
   // options has certificate-authority-data, cluster, env, tag, user (oidc user)
-  options.server = `https://api.${options.cluster}` // we need this to add to kubecfg if there is a new cluster
+  if (options.cluster) {
+    options.server = `https://api.${options.cluster}` // we need this to add to kubecfg if there is a new cluster
+  }
   const environment = loadEnvironment(options.env)
   const resources = await loadResources('k8s', { ...environment, ...options })
 
