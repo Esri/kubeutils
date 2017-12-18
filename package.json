@@ -21,7 +21,7 @@
     "test": "tape test/**/*.spec.js | tap-spec"
   },
   "name": "kubeutils",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Utilities for working with Kubernetes and Kops CLIs",
   "main": "index.js",
   "directories": {
@@ -31,7 +31,11 @@
     "type": "git",
     "url": "git+https://github.com/dmfenton/kubeutils.git"
   },
-  "keywords": ["kubernetes", "kops", "cli"],
+  "keywords": [
+    "kubernetes",
+    "kops",
+    "cli"
+  ],
   "author": "Daniel Fenton <dfenton@esri.com>",
   "license": "Apache-2.0",
   "bugs": {
