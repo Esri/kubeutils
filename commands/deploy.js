@@ -20,20 +20,12 @@ async function execute (options) {
       return d.metadata.name
     })
 
-  console.log('dry run of deployment')
-  console.log({
+  await applyResources(resources, {
     env: options.env,
     tag: options.tag,
     dryRun: true
   })
-  const dryApplies = await applyResources(resources, {
-    env: options.env,
-    tag: options.tag,
-    dryRun: true
-  })
-  logApplies(dryApplies)
 
-  console.log('the real deal')
   console.log({ env: options.env, tag: options.tag })
   const applies = await applyResources(resources, { env: options.env, tag: options.tag })
   logApplies(applies)
