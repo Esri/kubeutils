@@ -9,6 +9,7 @@ RUN mkdir /usr/local/share/ca-certificates/k8s && \
 RUN apt-get update && apt-get -qq install -y ca-certificates 
 
 ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
+RUN chmod +x /usr/local/bin/kubectl
 
 RUN mkdir /kubeutils
 WORKDIR /kubeutils
