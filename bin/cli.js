@@ -28,6 +28,7 @@ function deployOpts (yargs) {
     .describe('certificate-authority-data', 'cert auth data for the cluster')
     .describe('env', 'which hub environment to deploy to')
     .describe('tag', 'which tag to deploy')
+    .describe('dry-run', 'if true, do not actually apply')
     .choices('env', ['dev', 'qa', 'prod'])
 }
 

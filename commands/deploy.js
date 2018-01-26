@@ -20,17 +20,20 @@ async function execute (options) {
       return d.metadata.name
     })
 
-  await applyResources(resources, {
+  const dryRunApplies = await applyResources(resources, {
     env: options.env,
     tag: options.tag,
     dryRun: true
   })
 
-  console.log({ env: options.env, tag: options.tag })
+  if (options.dryRun) {
+    logApplies(dryRunApplies)
+    process.exit(0)
+  }
+
   const applies = await applyResources(resources, { env: options.env, tag: options.tag })
   logApplies(applies)
 
-  console.log('checking rollout status')
   await Promise.all(
     deployments.map(d => {
       return kubectl.rollout(d, 'status', { namespace: options.env })

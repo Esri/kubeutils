@@ -8,7 +8,6 @@ const read = util.promisify(fs.readFile)
 const handlebars = require('handlebars')
 
 async function loadResources (root, values = {}, options = {}) {
-  console.log(values)
   const manifest = buildManifest(root, options)
 
   const strings = await Promise.all(
