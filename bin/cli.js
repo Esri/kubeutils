@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/* Copyright (c) 2018 Environmental Systems Research Institute, Inc.
+ * Apache-2.0 */
 
 const commands = require('../commands')
 const chalk = require('chalk')
@@ -26,7 +28,7 @@ function deployOpts (yargs) {
     .describe('cluster', 'cluster to deploy to')
     .describe('token', 'token for accessing the cluster')
     .describe('certificate-authority-data', 'cert auth data for the cluster')
-    .describe('env', 'which environment to deploy to')
+    .describe('env', 'which  environment to deploy to')
     .describe('tag', 'which tag to deploy')
     .describe('dry-run', 'if true, do not actually apply')
 }

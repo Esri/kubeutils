@@ -1,3 +1,6 @@
+/* Copyright (c) 2018 Environmental Systems Research Institute, Inc.
+ * Apache-2.0 */
+
 const { spawn } = require('child_process')
 const chalk = require('chalk')
 const delay = require('delay')

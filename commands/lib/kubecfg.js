@@ -1,3 +1,6 @@
+/* Copyright (c) 2018 Environmental Systems Research Institute, Inc.
+ * Apache-2.0 */
+
 const yaml = require('js-yaml')
 const fs = require('fs')
 const { kubectl } = require('../../')
