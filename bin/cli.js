@@ -26,10 +26,9 @@ function deployOpts (yargs) {
     .describe('cluster', 'cluster to deploy to')
     .describe('token', 'token for accessing the cluster')
     .describe('certificate-authority-data', 'cert auth data for the cluster')
-    .describe('env', 'which hub environment to deploy to')
+    .describe('env', 'which environment to deploy to')
     .describe('tag', 'which tag to deploy')
     .describe('dry-run', 'if true, do not actually apply')
-    .choices('env', ['dev', 'qa', 'prod'])
 }
 
 function rollbackOpts (yargs) {
