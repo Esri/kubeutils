@@ -1,6 +1,6 @@
 # Kubeutils
 
-A command line tool to manage deployments of (Node) apps on Kubernetes.
+A command line tool to manage deployments of (Node) apps on Kubernetes. Kubeutils is useful if you need to deploy your app in more than one environment, e.g. test, staging and production. It lets you separate out the environment concerns from the pure Kubernetes logic so you can easily run the same app in multiple places with different settings.
 
 ## Usage
 
