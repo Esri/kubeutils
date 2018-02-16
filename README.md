@@ -94,7 +94,7 @@ Options:
   --cluster                     cluster to deploy to
   --token                       token for accessing the cluster
   --certificate-authority-data  cert auth data for the cluster
-  --env                         which hub environment to deploy to    [choices: "dev", "qa", "prod"]
+  --env                         which environment to deploy to    [choices: "dev", "qa", "prod"]
   --tag                         which tag to deploy
   --dry-run                     if true, do not actually apply
 ```
@@ -111,7 +111,7 @@ Options:
   --server                      k8s api of the cluster
   --token                       token for accessing the cluster
   --certificate-authority-data  TLS certificate for the cluster
-  --env                         which hub environment/namespace to rollback
+  --env                         which environment/namespace to rollback
                                                                       [choices: "dev", "qa", "prod"]
 ```
 
