@@ -1,6 +1,10 @@
 # Kubeutils
 
-A command line tool to manage deployments of (Node) apps on Kubernetes.
+A command line tool to manage deployments of (Node) apps on [Kubernetes](https://kubernetes.io/). 
+
+> Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
+
+Kubeutils is useful if you need to deploy your app in more than one environment, e.g. test, staging and production. It lets you separate out the environment concerns from the pure Kubernetes logic so you can easily run the same app in multiple places with different settings.
 
 ## Usage
 
@@ -95,7 +99,7 @@ Options:
   --cluster                     cluster to deploy to
   --token                       token for accessing the cluster
   --certificate-authority-data  cert auth data for the cluster
-  --env                         which hub environment to deploy to    [choices: "dev", "qa", "prod"]
+  --env                         which environment to deploy to    [choices: "dev", "qa", "prod"]
   --tag                         which tag to deploy
   --dry-run                     if true, do not actually apply
 ```
@@ -112,7 +116,7 @@ Options:
   --server                      k8s api of the cluster
   --token                       token for accessing the cluster
   --certificate-authority-data  TLS certificate for the cluster
-  --env                         which hub environment/namespace to rollback
+  --env                         which environment/namespace to rollback
                                                                       [choices: "dev", "qa", "prod"]
 ```
 
