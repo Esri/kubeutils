@@ -4,6 +4,11 @@ A command line tool to manage deployments of (Node) apps on Kubernetes.
 
 ## Usage
 
+### Prerequisites
+
+1. Kubernetes CLI > 1.8.0 https://kubernetes.io/docs/tasks/tools/install-kubectl/
+2. [optional] Kops CLI https://github.com/kubernetes/kops
+
 ### As a repo dependency
 1. Install with yarn or npm `yarn add --dev kubetuils` or `npm i -D kubeutils`
 2. Add an entry like so to the scripts block in package.json `kubeutils: kubeutils`
