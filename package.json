@@ -21,7 +21,7 @@
     "test": "tape test/**/*.spec.js | tap-spec"
   },
   "name": "kubeutils",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Utilities for working with Kubernetes and Kops CLIs",
   "main": "index.js",
   "directories": {
@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArcGIS/kubeutils.git"
+    "url": "git+https://github.com/esri/kubeutils.git"
   },
   "keywords": [
     "kubernetes",
@@ -39,7 +39,7 @@
   "author": "Daniel Fenton <dfenton@esri.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/ArcGIS/kubeutils/issues"
+    "url": "https://github.com/esri/kubeutils/issues"
   },
-  "homepage": "https://github.com/ArcGIS/kubeutils#readme"
+  "homepage": "https://github.com/esri/kubeutils#readme"
 }
