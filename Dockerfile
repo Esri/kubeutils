@@ -1,4 +1,4 @@
-FROM node:8-slim
+FROM node:8
 
 ARG KUBECTL_VERSION=1.8.4
 
