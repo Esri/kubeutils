@@ -7,7 +7,7 @@ const { loadResources, kubectl } = require('../')
 async function execute (options) {
   const environment = loadEnvironment(options.env)
   // options.file is a relative path
-  const resources = await loadResources(options.file, { ...environment, ...options }, { rootIsSpecificFile: true })
+  const resources = await loadResources(options.file, { ...environment, ...options })
 
   if (options.dryRun) {
     const dryRunApplies = await applyResources(resources, {

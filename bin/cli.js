@@ -50,7 +50,7 @@ function rollbackOpts (yargs) {
 
 function applyOpts (yargs) {
   return yargs
-    .describe('file-path', 'relative path of a file to be run on a cluster')
+    .describe('file', 'relative path of a file to be run on a cluster')
     .describe('env', 'which  environment to apply to')
     .describe('dry-run', 'if true, do not actually apply')
 }

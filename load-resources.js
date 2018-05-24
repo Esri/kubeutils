@@ -34,7 +34,7 @@ async function loadResources (root, values = {}, options = {}) {
 }
 
 function buildManifest (root, options) {
-  if (options.rootIsSpecificFile) {
+  if (fs.lstatSync(root).isFile()) {
     return [path.join(process.cwd(), root)]
   }
   const globs = options.globs || ['**/*.yaml', '**/*.hbs']

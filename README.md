@@ -129,7 +129,7 @@ applies the provided k8s yaml on a target cluster
 Options:
   --version    Show version number                                                         [boolean]
   --help       Show help                                                                   [boolean]
-  --file-path  relative path of a file to be run on a cluster
+  --file       relative path of a file to be run on a cluster
   --env        which  environment to apply to
   --dry-run    if true, do not actually apply
 ```
