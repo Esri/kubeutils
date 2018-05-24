@@ -1,6 +1,6 @@
 # Kubeutils
 
-A command line tool to manage deployments of (Node) apps on [Kubernetes](https://kubernetes.io/). 
+A command line tool to manage deployments of (Node) apps on [Kubernetes](https://kubernetes.io/).
 
 > Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
 
@@ -118,6 +118,20 @@ Options:
   --certificate-authority-data  TLS certificate for the cluster
   --env                         which environment/namespace to rollback
                                                                       [choices: "dev", "qa", "prod"]
+```
+
+### Apply
+```
+apply
+
+applies the provided k8s yaml on a target cluster
+
+Options:
+  --version    Show version number                                                         [boolean]
+  --help       Show help                                                                   [boolean]
+  --file-path  relative path of a file to be run on a cluster
+  --env        which  environment to apply to
+  --dry-run    if true, do not actually apply
 ```
 
 ### License
