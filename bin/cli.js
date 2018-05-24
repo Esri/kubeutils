@@ -19,6 +19,12 @@ module.exports = yargs
     rollbackOpts,
     handle(commands.rollback)
   )
+  .command(
+    'apply',
+    'runs the provided k8s yaml on a target cluster',
+    applyOpts,
+    handle(commands.apply)
+  )
   .help('help')
   .epilog('Made with ♥️  by Esri DC R&D')
   .wrap(100).argv
@@ -40,6 +46,13 @@ function rollbackOpts (yargs) {
     .describe('certificate-authority-data', 'TLS certificate for the cluster')
     .describe('env', 'which hub environment/namespace to rollback')
     .choices('env', ['dev', 'qa', 'prod'])
+}
+
+function applyOpts (yargs) {
+  return yargs
+    .describe('file-path', 'relative path of a file to be run on a cluster')
+    .describe('env', 'which  environment to apply to')
+    .describe('dry-run', 'if true, do not actually apply')
 }
 
 function handle (command) {

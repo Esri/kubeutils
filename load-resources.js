@@ -12,7 +12,6 @@ const handlebars = require('handlebars')
 
 async function loadResources (root, values = {}, options = {}) {
   const manifest = buildManifest(root, options)
-
   const strings = await Promise.all(
     manifest.map(file => {
       if (path.extname(file) === '.hbs') {
@@ -35,6 +34,9 @@ async function loadResources (root, values = {}, options = {}) {
 }
 
 function buildManifest (root, options) {
+  if (options.rootIsSpecificFile) {
+    return [path.join(process.cwd(), root)]
+  }
   const globs = options.globs || ['**/*.yaml', '**/*.hbs']
   return walk(path.join(process.cwd(), root), { directories: false, globs }).map(file => {
     return path.join(root, file)
