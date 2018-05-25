@@ -21,7 +21,7 @@
     "test": "tape test/**/*.spec.js | tap-spec"
   },
   "name": "kubeutils",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "description": "Utilities for working with Kubernetes and Kops CLIs",
   "main": "index.js",
   "directories": {
