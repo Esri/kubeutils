@@ -4,5 +4,5 @@
 module.exports = {
   deploy: require('./deploy'),
   rollback: require('./rollback'),
-  apply: require('kubeutils')
+  apply: require('./apply')
 }
