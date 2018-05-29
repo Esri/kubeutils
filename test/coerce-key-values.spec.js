@@ -1,5 +1,5 @@
 const test = require('tape')
-const { coerceKeyValues } = require('../bin/cli')
+const { coerceKeyValues } = require('../bin/helper')
 
 test('coerceKeyValues should return an object of keys and vals passed as args', spec => {
   spec.plan(2)
