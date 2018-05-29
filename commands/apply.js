@@ -6,8 +6,8 @@ const { loadResources, kubectl } = require('../')
 
 async function execute (options) {
   const environment = loadEnvironment(options.env)
-  // options.file is a relative path
-  const resources = await loadResources(options.file, { ...environment, ...options })
+  // options.file is a relative path, options.vars have template variables' values to be used in resources
+  const resources = await loadResources(options.file, { ...environment, ...options, ...options.vars })
 
   if (options.dryRun) {
     const dryRunApplies = await applyResources(resources, {

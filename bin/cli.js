@@ -5,6 +5,7 @@
 const commands = require('../commands')
 const chalk = require('chalk')
 const yargs = require('yargs')
+const { coerceKeyValues } = require('./helper')
 
 module.exports = yargs
   .command(
@@ -54,6 +55,10 @@ function applyOpts (yargs) {
     .alias('file', 'f')
     .describe('env', 'which  environment to apply to')
     .describe('dry-run', 'if true, do not actually apply')
+    .describe('vars', 'any other vars you want to pass in as key=value to be used in the environment to be applied on resources')
+    .array('vars')
+    .coerce('vars', coerceKeyValues)
+    .usage('bin/cli.js apply --file <file to be applied> --dry-run --env dev --vars tag=1234 placeholder="some placeholder value"')
 }
 
 function handle (command) {

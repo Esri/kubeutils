@@ -126,12 +126,16 @@ apply
 
 applies the provided k8s yaml on a target cluster
 
+bin/cli.js apply --file <file to be applied> --dry-run --env dev --vars tag=1234 placeholder="some placeholder value"
+
 Options:
-  --version    Show version number                                                         [boolean]
-  --help       Show help                                                                   [boolean]
-  --file       relative path of a file to be run on a cluster
-  --env        which  environment to apply to
-  --dry-run    if true, do not actually apply
+  --version   Show version number                                                          [boolean]
+  --help      Show help                                                                    [boolean]
+  --file, -f  relative path of a file to be run on a cluster
+  --env       which  environment to apply to
+  --dry-run   if true, do not actually apply
+  --vars      any other vars you want to pass in as key=value to be used in the environment to be
+              applied on resources
 ```
 
 ### License
