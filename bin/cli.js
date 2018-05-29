@@ -5,29 +5,27 @@
 const commands = require('../commands')
 const chalk = require('chalk')
 const yargs = require('yargs')
-
-module.exports = yargs
-  .command(
-    'deploy',
-    'deploys the application to a target cluster',
-    deployOpts,
-    handle(commands.deploy)
-  )
-  .command(
-    'rollback',
-    'rolls back the deployments on a target cluster',
-    rollbackOpts,
-    handle(commands.rollback)
-  )
-  .command(
-    'apply',
-    'runs the provided k8s yaml on a target cluster',
-    applyOpts,
-    handle(commands.apply)
-  )
-  .help('help')
-  .epilog('Made with ♥️  by Esri DC R&D')
-  .wrap(100).argv
+              .command(
+                'deploy',
+                'deploys the application to a target cluster',
+                deployOpts,
+                handle(commands.deploy)
+              )
+              .command(
+                'rollback',
+                'rolls back the deployments on a target cluster',
+                rollbackOpts,
+                handle(commands.rollback)
+              )
+              .command(
+                'apply',
+                'runs the provided k8s yaml on a target cluster',
+                applyOpts,
+                handle(commands.apply)
+              )
+              .help('help')
+              .epilog('Made with ♥️  by Esri DC R&D')
+              .wrap(100).argv
 
 function deployOpts (yargs) {
   return yargs
@@ -62,7 +60,7 @@ function applyOpts (yargs) {
 
 function coerceKeyValues (vars) {
   return vars.reduce((obj, variable) => {
-    const [key, value] = variable.split('=')
+    const [key, value] = variable.split(/=(.+)/)
     obj[key] = value
     return obj
   }, {})
@@ -75,4 +73,9 @@ function handle (command) {
       process.exit(1)
     })
   }
+}
+
+module.exports = {
+  yargs,
+  coerceKeyValues
 }
