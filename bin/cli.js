@@ -55,7 +55,17 @@ function applyOpts (yargs) {
     .describe('env', 'which  environment to apply to')
     .describe('dry-run', 'if true, do not actually apply')
     .describe('vars', 'any other vars you want to pass in as key=value to be used in the environment to be applied on resources')
-    .usage('bin/cli.js apply --file <file to be applied> --dry-run --env dev --vars.tag=1234 --vars.placeholder="some value to be used"')
+    .array('vars')
+    .coerce('vars', coerceKeyValues)
+    .usage('bin/cli.js apply --file <file to be applied> --dry-run --env dev --vars tag=1234 placeholder="some placeholder value"')
+}
+
+function coerceKeyValues (vars) {
+  return vars.reduce((obj, variable) => {
+    const [key, value] = variable.split('=')
+    obj[key] = value
+    return obj
+  }, {})
 }
 
 function handle (command) {

@@ -126,8 +126,7 @@ apply
 
 applies the provided k8s yaml on a target cluster
 
-bin/cli.js apply --file <file to be applied> --dry-run --env dev --vars.tag=1234
---vars.placeholder="some value to be used"
+bin/cli.js apply --file <file to be applied> --dry-run --env dev --vars tag=1234 placeholder="some placeholder value"
 
 Options:
   --version   Show version number                                                          [boolean]
