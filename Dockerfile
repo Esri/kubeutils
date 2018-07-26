@@ -6,7 +6,7 @@ RUN mkdir /usr/local/share/ca-certificates/k8s && \
     chown -R node:node /usr/local/share/ca-certificates/k8s && \
     chown -R node:node /etc/ssl/certs/
 
-RUN apt-get update && apt-get -qq install -y ca-certificates musl musl-dev
+RUN apt-get update && apt-get -qq install -y ca-certificates musl
 
 RUN ln -s /lib/ld-musl-x86_64.so.1 /lib/libc.musl-x86_64.so.1
 
