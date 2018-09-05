@@ -2,6 +2,7 @@
  * Apache-2.0 */
 
 module.exports = {
+  applyResources: require('./apply-resources'),
   loadEnvironment: require('./load-environment'),
   logApplies: require('./log-applies'),
   kubecfg: require('./kubecfg')

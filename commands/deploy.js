@@ -2,7 +2,7 @@
  * Apache-2.0 */
 
 const { loadEnvironment, logApplies, kubecfg } = require('./lib')
-const { loadResources, kubectl } = require('../')
+const { applyResources, loadResources, kubectl } = require('../')
 
 async function execute (options) {
   // options has certificate-authority-data, cluster, env, tag, user (oidc user)
@@ -40,14 +40,6 @@ async function execute (options) {
   await Promise.all(
     deployments.map(d => {
       return kubectl.rollout(d, 'status', { namespace: options.env })
-    })
-  )
-}
-
-function applyResources (resources, options) {
-  return Promise.all(
-    resources.map(r => {
-      return kubectl.apply(r, options)
     })
   )
 }
