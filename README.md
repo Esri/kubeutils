@@ -138,6 +138,8 @@ Options:
               applied on resources
 ```
 
+The `apply` command adds a set of default variables like timestamp if they are already not provided. They are useful in creating unique K8s resources.
+
 ### License
 
 Copyright 2018 Esri

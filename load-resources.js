@@ -11,6 +11,7 @@ const read = util.promisify(fs.readFile)
 const handlebars = require('handlebars')
 
 async function loadResources (root, values = {}, options = {}) {
+  values.timestamp = values.timestamp || (new Date()).toString()
   const manifest = buildManifest(root, options)
   const strings = await Promise.all(
     manifest.map(file => {
