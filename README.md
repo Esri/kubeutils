@@ -140,6 +140,12 @@ Options:
 
 The `apply` command adds a set of default variables like timestamp if they are already not provided. They are useful in creating unique K8s resources.
 
+#### built-in variables
+
+| name      | description                        |
+|-----------|------------------------------------|
+| timestamp | unix timestamp when command is run |
+
 ### License
 
 Copyright 2018 Esri
