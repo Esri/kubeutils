@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 ### Changed
 * Apply resources serially to avoid TLS timeout
+* Apply command adds a default variable `timestamp` if it is not provided
 
 ## [1.8.6] - 2018-05-29
 ### Added
