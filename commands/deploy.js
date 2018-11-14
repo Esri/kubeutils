@@ -1,8 +1,8 @@
 /* Copyright (c) 2018 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 
-const { loadEnvironment, logApplies, kubecfg } = require('./lib')
-const { applyResources, loadResources, kubectl } = require('../')
+const { applyResources, loadEnvironment, logApplies, kubecfg } = require('./lib')
+const { loadResources, kubectl } = require('../')
 
 async function execute (options) {
   // options has certificate-authority-data, cluster, env, tag, user (oidc user)
