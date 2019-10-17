@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:10
 
 ARG KUBECTL_VERSION=1.16.1
 
