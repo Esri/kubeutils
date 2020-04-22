@@ -10,8 +10,14 @@ Kubeutils is useful if you need to deploy your app in more than one environment,
 
 ### Prerequisites
 
-1. Kubernetes CLI > 1.8.0 https://kubernetes.io/docs/tasks/tools/install-kubectl/
+1. Kubernetes CLI > 1.8.0 (but no newer than 1.9.0) https://kubernetes.io/docs/tasks/tools/install-kubectl/
 2. [optional] Kops CLI https://github.com/kubernetes/kops
+
+To install Kubernetes CLI 1.9.0 via homebrew on Mac OSX, run:
+
+`brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/505fcec7a3cf4f1a073b45bc7ae8294649a33f89/Formula/kubernetes-cli.rb`
+
+Otherwise homebrew will install the latest, which does not work.  See [this article](https://www.benpickles.com/articles/72-downgrading-kubectl-with-homebrew) to downgrade Kubernetes CLI > 1.9.0 in homebrew.  
 
 ### As a repo dependency
 1. Install with yarn or npm `yarn add --dev kubetuils` or `npm i -D kubeutils`
